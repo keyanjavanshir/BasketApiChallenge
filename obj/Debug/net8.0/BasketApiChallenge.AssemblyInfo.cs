@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BasketApiChallenge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fd403187b9f0438bf2530552e9d067e0cc4325a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+213a2530c6ca951ad0be88bf27a6f1ef6e920ade")]
 [assembly: System.Reflection.AssemblyProductAttribute("BasketApiChallenge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BasketApiChallenge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

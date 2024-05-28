@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using BasketApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,8 +15,15 @@ builder.Services.AddTransient<AuthenticatedHttpClientHandler>();
 builder.Services.AddHttpClient("AuthenticatedClient")
     .AddHttpMessageHandler<AuthenticatedHttpClientHandler>();
 
+// Service Dependency Injection
+builder.Services.AddScoped<IBasketService, BasketService>();
+
 // Strategy Dependency Injection
 builder.Services.AddScoped<IProductStrategy, ImpactProductStrategy>();
+
+// Dependency Injection using Database in-memory
+builder.Services.AddDbContext<BasketContext>(options => options.UseInMemoryDatabase("Basket"));
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
