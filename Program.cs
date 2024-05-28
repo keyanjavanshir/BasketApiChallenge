@@ -12,6 +12,8 @@ builder.Services.AddTransient<AuthenticatedHttpClientHandler>();
 builder.Services.AddHttpClient("AuthenticatedClient")
     .AddHttpMessageHandler<AuthenticatedHttpClientHandler>();
 
+// Strategy Dependency Injection
+builder.Services.AddScoped<IProductStrategy, ImpactProductStrategy>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
