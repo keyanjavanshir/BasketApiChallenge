@@ -10,5 +10,12 @@ namespace BasketApi.Models
         }
 
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
+
+        // Override the OnModelCreating method 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

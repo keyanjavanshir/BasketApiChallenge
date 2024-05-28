@@ -8,10 +8,12 @@ namespace BasketApi.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketService _basketService;
+        private readonly IOrderLineService _orderLineService;
 
-        public BasketController(IBasketService basketService)
+        public BasketController(IBasketService basketService, IOrderLineService orderLineService)
         {
             _basketService = basketService;
+            _orderLineService = orderLineService;
         }
 
         [HttpGet("GetBasketById/{id}")]
@@ -44,6 +46,14 @@ namespace BasketApi.Controllers
 
             var updatedBasket = await _basketService.UpdateBasketAsync(basket);
             return Ok(updatedBasket);
+        }
+
+        [HttpPost("{basketId}/AddOrderLine")]
+        public async Task<ActionResult<OrderLine>> AddOrderLine(Guid basketId, [FromBody] OrderLine orderLine)
+        {
+            // Add the order line to the basket
+            var addedOrderLine = await _orderLineService.AddOrderLineAsync(basketId, orderLine);
+            return CreatedAtAction(nameof(GetBasket), new { id = basketId }, addedOrderLine);
         }
     }
 }

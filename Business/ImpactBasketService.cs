@@ -35,9 +35,21 @@ public class BasketService : IBasketService
 
     public async Task<Basket> UpdateBasketAsync(Basket basket)
     {
-        // Update the basket in the database and save the changes
-        _context.Entry(basket).State = EntityState.Modified;
+        // Get the existing basket from the database
+        var existingBasket = await _context.Baskets.Include(b => b.OrderLines).FirstOrDefaultAsync(b => b.Id == basket.Id);
+        if (existingBasket == null)
+        {
+            throw new Exception("Basket not found");
+        }
+
+        // Update basket properties
+        existingBasket.userEmail = basket.userEmail;
+        existingBasket.totalAmount = basket.totalAmount;
+
+        // Update the state of the basket entity
+        _context.Entry(existingBasket).State = EntityState.Modified;
+
         await _context.SaveChangesAsync();
-        return basket;
+        return existingBasket;
     }
 }

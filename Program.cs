@@ -17,6 +17,7 @@ builder.Services.AddHttpClient("AuthenticatedClient")
 
 // Service Dependency Injection
 builder.Services.AddScoped<IBasketService, BasketService>();
+builder.Services.AddScoped<IOrderLineService, OrderLineService>();
 
 // Strategy Dependency Injection
 builder.Services.AddScoped<IProductStrategy, ImpactProductStrategy>();
